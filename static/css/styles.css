@@ -1,0 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* Optional background color */
+    padding: 10px; /* Optional padding */
+}
+
+.nav-container img {
+    height: 40px;
+    margin-left: 20px; /* Adjust the margin as needed */
+}
+
+.nav-container h4{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black; /* Optional text color */
+    margin-left: 300px;
+}
+
+.content-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    background-color: #f7bfda;
+    color: black;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.checkbox-group{
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.sub-options {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid #ccc;
+}
+
+.sub-options label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Style the radio buttons (optional) */
+.sub-options input[type="radio"] {
+    margin-right: 5px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.transformation-form {
+    margin-left: 20px;
+}
+
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-column {
+    width: 40%;
+    padding: 10px;
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.image-column img {
+    max-width: 80%;
+    height: auto;
+    object-fit: contain; /* Adjust this property as needed (e.g., contain, cover) */
+}
+
+.image-class img{
+    width: 100%;
+    height: auto;
+}
+
+/* Adjust margins and styles for smaller screens */
+@media (max-width: 500px) {
+    .image-column {
+        width: 100%;
+        padding: 5px;
+    }
+}
+
+#carouselExampleSlidesOnly{
+    background-color: black;
+
+.carousel-item {
+    opacity: 0.4;
+}
+.carousel-item img {
+    height: 70vh;
+}
+
+.carousel {
+    position: relative;
+}
+
+.carousel-center {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    height: 159px;
+}
+
+
+
+.email {
+    margin-top: 10px;
+    font-size: 16px;
+}
