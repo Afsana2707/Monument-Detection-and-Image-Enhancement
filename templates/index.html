@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block main %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/static/img/taj.jpg" class="d-block w-100" alt="Taj Mahal">
+        </div>
+        <div class="carousel-item">
+            <img src="/static/img/Ellora caves.jpg" class="d-block w-100" alt="Ellora Caves">
+        </div>
+        <div class="carousel-item">
+            <img src="/static/img/india gate.jpg" class="d-block w-100" alt="India Gate">
+        </div>
+    </div>
+    <div class="carousel-center">
+        <button type="button" class="btn btn-outline-light btn-lg">Detect Monument</button>
+</div>
+
+<div class="footer">
+    <p style="margin-top: 30px;" class="email">Email: example@example.com</p>
+    <p >&copy; 2023 Monument Detection & Image Enhancement. All rights reserved.</p>
+</div>
+{% endblock %}

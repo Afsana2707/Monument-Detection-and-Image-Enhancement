@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block main %}
+<div>
+    <h2 style="margin:10px ; text-align: center; font-family: Lucida Calligraphy;">Enhance according to your needs!</h2>
+<div>
+    <div class="content-container mb-3">
+        <div class="upload-form">
+            <form method="POST" enctype="multipart/form-data" action="/enhancement">
+                <label for="formFileSm" class="form-label">Upload Image</label>
+                <input class="form-control" type="file" name="image" accept="image/*" required>
+
+        </div>
+
+        <div class="checkbox-container">
+            <div class="checkbox-group">
+                <input type="checkbox" name="grayscale" id="grayscale" value="grayscale">
+                <label for="grayscale">Grayscale</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" name="edge" id="edge" value="edge">
+                <label for="edge">Edge Detection</label>
+            </div>
+            <div class="sub-options">
+                <div class="checkbox-group">
+                    <input type="radio" name="edge-detection" id="edge-detection" value="canny">
+                    <label for="edge-detection">Canny Edge Detection</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="radio" name="edge-detection" id="edge-detection" value="sobel">
+                    <label for="edge-detection">Sobel Edge Detection</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="radio" name="edge-detection" id="edge-detection" value="scharr" checked>
+                    <label for="edge-detection">Scharr Edge Detection (Default)</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="transformation-form">
+        <div class="form-group">
+            <input type="checkbox" name="apply-transformation" id="apply-transformation" value="apply-transformation">
+            <label for="apply-transformation">Transformation</label>
+        </div>
+        <div class="form-group">
+            <label for="tx">Translation X:</label>
+            <input type="number" name="tx" id="tx" placeholder="Enter translation X">
+        </div>
+        <div class="form-group">
+            <label for="ty">Translation Y:</label>
+            <input type="number" name="ty" id="ty" placeholder="Enter translation Y">
+        </div>
+        <div class="form-group">
+            <label for="transform">Select Transformation:</label>
+            <select name="transform" id="transform">
+                <option value="translate">Translate</option>
+                <option value="affine">Affine</option>
+                <option value="shear">Shear</option>
+                <option value="deformation">Deformation</option>
+            </select>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" name="rotate" id="rotate" value="rotate">
+            <label style="margin-left: 5px;" for="rotate">Rotation</label>
+            <input style="margin-left: 5px; margin-bottom: 5px;" type="text" name="angle" id="angle">
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" name="median_blur" id="median_blur" value="median_blur">
+            <label style="margin-left: 5px;" for="median_blur">Blur Value</label>
+            <input style="margin-left: 5px; margin-bottom: 5px;" type="number" name="blur" id="blur">
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" name="bilateral" id="bilateral" value="bilateral">
+            <label style="margin-left: 5px;" for="bilateral">Bilateral Filter: d</label>
+            <input style="margin-left: 5px;" type="number" name="d" id="d">
+            <label style="margin-left: 5px;" for="sigma_color">Sigma Color</label>
+            <input style="margin-left: 5px;" type="number" name="sigma_color" id="sigma_color">
+            <label style="margin-left: 5px;" for="sigma_space">Sigma Space</label>
+            <input style="margin-left: 5px;" type="number" name="sigma_space" id="sigma_space">
+        </div>
+    </div>
+    <button style="margin-left: 10px; margin-top: 10px;" type="submit">Upload and Process</button>
+</div>
+</form>
+
+<div class="image-container">
+    {% if image %}
+    <div class="image-column">
+        <h5>Uploaded Image</h5>
+        <img src="{{ image }}" alt="Uploaded Image">
+    </div>
+    {% endif %}
+    {% if processed_images['grayscale'] %}
+    <div class="image-column">
+        <div style="display: flex; flex-direction: row; align-items: center; text-align: center;">
+            <h5 style="margin-right: 50px;">Grayscale</h5>
+        </div>
+        <img src="data:image/jpeg;base64,{{ processed_images['grayscale'] }}" alt="Edge Detection Image">
+    </div>
+    {% endif %}
+    {% if processed_images['rotate'] %}
+    <div class="image-column">
+        <div style="display: flex; flex-direction: row; align-items: center; text-align: center;">
+            <h5 style="margin-right: 50px;">Rotation</h5>
+        </div>
+        <img src="data:image/jpeg;base64,{{ processed_images['rotate'] }}" alt="Edge Detection Image">
+    </div>
+    {% endif %}
+    {% if processed_images['edge'] %}
+    <div class="image-column">
+        <div style="display: flex; flex-direction: row; align-items: center; text-align: center;">
+            <h5 style="margin-right: 50px;">Edge</h5>
+        </div>
+        <img src="data:image/jpeg;base64,{{ processed_images['edge'] }}" alt="Edge Detection Image">
+    </div>
+    {% endif %}
+    {% if processed_images['transform'] %}
+    <div class="image-column">
+        <div style="display: flex; flex-direction: row; align-items: center; text-align: center;">
+            <h5 style="margin-right: 50px;">Transform</h5>
+        </div>
+        <img src="data:image/jpeg;base64,{{ processed_images['transform'] }}" alt="Edge Detection Image">
+    </div>
+    {% endif %}
+    {% if processed_images['median_blur'] %}
+    <div class="image-column">
+        <div style="display: flex; flex-direction: row; align-items: center; text-align: center;">
+            <h5 style="margin-right: 50px;">Median Blur</h5>
+        </div>
+        <img src="data:image/jpeg;base64,{{ processed_images['median_blur'] }}" alt="Median Blur Image">
+    </div>
+    {% endif %}
+    {% if processed_images['bilateral'] %}
+    <div class="image-column">
+        <div style="display: flex; flex-direction: row; align-items: center; text-align: center;">
+            <h5 style="margin-right: 50px;">Bilateral filter</h5>
+        </div>
+        <img src="data:image/jpeg;base64,{{ processed_images['bilateral'] }}" alt="Bilateral Image">
+    </div>
+    {% endif %}
+</div>
+</div>
+</div>
+{% endblock %}

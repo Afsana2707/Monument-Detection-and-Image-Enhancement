@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block main %}
+<div>
+    <h2 style="margin: 10px; text-align: center; font-family: Lucida Calligraphy;">Identify Any Indian Heritage within seconds.....</h2>
+<div>
+    <div class="content-container mb-3">
+        <div class="upload-form">
+            <form method="POST" enctype="multipart/form-data" action="/detect">
+                <div class="input-group">
+                    <input class="form-control" type="file" name="image" accept="image/*" required>
+                    <button style="margin-left: 10px;" type="submit">Upload and Process</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <div class="row">
+            <div class="col-md-6" style="margin-left: 100px;">
+                {% if image %}
+                <div class="image-column">
+                    <h5>Uploaded Image</h5>
+                    <img src="{{ image }}" alt="Uploaded Image">
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6" style="margin-left: 100px; text-align: justify;">
+                <div class="result-column">
+                    <h5>{{ label }}</h5>
+                    <p>{{ description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
